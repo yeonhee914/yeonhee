@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사회복지 실무역량</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: #efefef;
+      color: #111;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .background-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+    }
+
+    header {
+      width: 100%;
+      padding: 40px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo-mark {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: -6px;
+      text-transform: lowercase;
+      line-height: 0.9;
+    }
+
+    .logo-sub {
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      color: #666;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .github-link {
+      text-decoration: none;
+      color: #111;
+      border: 1px solid #111;
+      padding: 12px 20px;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .github-link:hover {
+      background: #111;
+      color: white;
+    }
+
+    .hero {
+      padding: 80px 8% 40px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: -4px;
+    }
+
+    .hero-desc {
+      margin-top: 28px;
+      max-width: 700px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 35px;
+      backdrop-filter: blur(14px);
+    }
+
+    .dashboard {
+      padding: 40px 8% 80px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 30px;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card-number {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-size: 4rem;
+      font-weight: 700;
+      color: rgba(0,0,0,0.06);
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .weather-temp {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .weather-info {
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .news-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .news-item {
+      border-left: 3px solid #111;
+      padding-left: 14px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .stat-box {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding-bottom: 12px;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 40px 8%;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-text {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .hero-title {
+        font-size: 3.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-grid"></div>
+
+  <header>
+    <div>
+      <div class="logo-mark">nct 127</div>
+      <div class="logo-sub">social welfare practical competency</div>
+    </div>
+
+    <a
+      class="github-link"
+      href="https://github.com/yeonhee914/yeonhee"
+      target="_blank"
+    >
+      GitHub Repository
+    </a>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1 class="hero-title">
+        사회복지<br>
+        실무역량
+      </h1>
+
+      <p class="hero-desc">
+        부산 지역 사회 이슈와 복지 통계, 부경대학교 관련 뉴스,
+        실시간 날씨 정보를 한 화면에서 확인할 수 있는 아카이브형 웹사이트입니다.
+      </p>
+    </div>
+
+    <div class="hero-card">
+      <h2>PROJECT INFO</h2>
+      <p style="line-height:1.8; color:#555; margin-top:15px;">
+        GitHub Pages 기반 독립형 HTML 프로젝트입니다.<br><br>
+        향후 API를 연결하면 실시간 날씨와 뉴스 데이터를 자동 연동할 수 있습니다.
+      </p>
+    </div>
+  </section>
+
+  <section class="dashboard">
+
+    <article class="card">
+      <div class="card-number">01</div>
+      <h2>부산 날씨</h2>
+
+      <div class="weather-temp">24°</div>
+
+      <div class="weather-info">
+        <p>현재 위치: 부산광역시</p>
+        <p>맑음 · 미세먼지 보통</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-number">02</div>
+      <h2>부산 지역 이슈</h2>
+
+      <ul class="news-list">
+        <li class="news-item">
+          부산 청년 인구 감소와 지역 정착 정책 확대 논의
+        </li>
+
+        <li class="news-item">
+          부산형 통합돌봄 서비스 시범사업 확대 추진
+        </li>
+
+        <li class="news-item">
+          노인 복지시설 접근성 개선 및 교통 지원 강화
+        </li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <div class="card-number">03</div>
+      <h2>부경대학교 뉴스</h2>
+
+      <ul class="news-list">
+        <li class="news-item">
+          지역사회 연계 사회복지 프로그램 운영 확대
+        </li>
+
+        <li class="news-item">
+          학생 복지 및 상담 지원 서비스 강화 추진
+        </li>
+
+        <li class="news-item">
+          지역 공공기관 협력 프로젝트 진행
+        </li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <div class="card-number">04</div>
+      <h2>사회복지 통계</h2>
+
+      <div class="stat-box">
+
+        <div class="stat-item">
+          <span>고령 인구 비율</span>
+          <span class="stat-value">19.2%</span>
+        </div>
+
+        <div class="stat-item">
+          <span>1인 가구 비율</span>
+          <span class="stat-value">34.5%</span>
+        </div>
+
+        <div class="stat-item">
+          <span>복지 예산 증가율</span>
+          <span class="stat-value">8.7%</span>
+        </div>
+
+        <div class="stat-item">
+          <span>돌봄 서비스 이용률</span>
+          <span class="stat-value">62%</span>
+        </div>
+
+      </div>
+    </article>
+
+  </section>
+
+  <footer>
+    <div class="footer-text">
+      © 2026 사회복지 실무역량<br>
+      Designed for GitHub Pages
+    </div>
+  </footer>
+
+</body>
+</html>
